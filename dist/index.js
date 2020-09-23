@@ -164,15 +164,51 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 
 /***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/***/ "./src/env/Authentication.js":
+/*!***********************************!*\
+  !*** ./src/env/Authentication.js ***!
+  \***********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _vuetify_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/vuetify/index */ \"./src/vuetify/index.js\");\n/* harmony import */ var _settings_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/settings/index */ \"./src/settings/index.js\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  vuetify: _vuetify_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  settings: _settings_index__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _WindowAccessor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WindowAccessor */ \"./src/env/WindowAccessor.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (class {\n  hasUser() {\n    _WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get(['user', 'id'], null);\n    return window.portal.hasOwnProperty('user') && window.portal.user !== null && window.portal.user.hasOwnProperty('id');\n  }\n\n  getUser() {}\n\n});\n\n//# sourceURL=webpack:///./src/env/Authentication.js?");
+
+/***/ }),
+
+/***/ "./src/env/WindowAccessor.js":
+/*!***********************************!*\
+  !*** ./src/env/WindowAccessor.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nlet baseProperty = 'portal';\n/* harmony default export */ __webpack_exports__[\"default\"] = (class {\n  isObject(val) {\n    return typeof val === 'object' && val !== null;\n  }\n\n  initialised() {\n    return window.hasOwnProperty(baseProperty) && this.isObject(window[baseProperty]);\n  }\n\n  static get(attributes = [], defaultTo = null) {// attributes is [\n  }\n\n  static has(attributes = [], defaultTo = null) {\n    if (this.initialised) {\n      for (let i = 0; i++; i < attributes.length) {\n        console.log(i);\n      }\n    } // attributes is [user, id]\n    // Check window is object, window has portal property.\n    // Check each attribute in turn, so\n    // Does window.portal have user property.\n    // If another attribute, is user an object\n    // Does window.portal.user have\n\n  }\n\n});\n\n//# sourceURL=webpack:///./src/env/WindowAccessor.js?");
+
+/***/ }),
+
+/***/ "./src/env/index.js":
+/*!**************************!*\
+  !*** ./src/env/index.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Authentication__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Authentication */ \"./src/env/Authentication.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  authentication: _Authentication__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n});\n\n//# sourceURL=webpack:///./src/env/index.js?");
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! exports provided: environment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _vuetify_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/vuetify/index */ \"./src/vuetify/index.js\");\n/* harmony import */ var _settings_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/settings/index */ \"./src/settings/index.js\");\n/* harmony import */ var _env_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/env/index */ \"./src/env/index.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"environment\", function() { return _env_index__WEBPACK_IMPORTED_MODULE_2__[\"default\"]; });\n\n\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 

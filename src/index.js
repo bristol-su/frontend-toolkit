@@ -1,7 +1,9 @@
 import vuetify from '@/vuetify/index';
 import settings from '@/settings/index';
+import env from '@/env/index';
 
-export default {
-    vuetify,
-    settings
+export {
+    // vuetify,
+    // settings,
+    env as environment
 }
