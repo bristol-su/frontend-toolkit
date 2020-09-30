@@ -3,7 +3,7 @@ import settings from '@/settings/index';
 import env from '@/env/index';
 
 export {
-    // vuetify,
-    // settings,
+    vuetify,
+    settings,
     env as environment
 }

@@ -19,15 +19,15 @@ module.exports = {
         minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
     },
 
-    externals : {
-    },
-
     // Entry points
     entry: {
         // Assets for the majority of the site
         index: [
             './src/index.js'
         ],
+        VueInstaller: [
+          './src/vue-installer.js'
+        ]
     },
 
     // Outputs
@@ -35,7 +35,9 @@ module.exports = {
         // Specify the public path
         path: path.resolve(__dirname, './dist'),
         // Specify where the js should be saved. Give it a chunkhash if in production to allow caching
-        filename: '[name].js'
+        filename: '[name].js',
+        library: 'FrontendToolkit',
+        libraryTarget: 'umd'
     },
     module: {
         rules: [
@@ -44,11 +46,6 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
-            },
-            // Loader for .vue files
-            {
-                test: /\.vue$/,
-                loader: 'vue-loader'
             }
         ]
     },
@@ -58,9 +55,6 @@ module.exports = {
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: ['dist/*'],
         }),
-
-        // Load Vue
-        new VueLoaderPlugin(),
 
         // Notify on completed build. Notify on error in production, or always in development
         new WebpackNotifierPlugin({

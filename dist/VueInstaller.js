@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -246,6 +246,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _set
 
 /***/ }),
 
+/***/ "./src/vue-installer.js":
+/*!******************************!*\
+  !*** ./src/vue-installer.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/index */ \"./src/index.js\");\n\nconst VueInstaller = {\n  install: function (Vue) {\n    Vue.prototype.$tools = _index__WEBPACK_IMPORTED_MODULE_0__;\n  }\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (VueInstaller);\n\n//# sourceURL=webpack://FrontendToolkit/./src/vue-installer.js?");
+
+/***/ }),
+
 /***/ "./src/vuetify/index.js":
 /*!******************************!*\
   !*** ./src/vuetify/index.js ***!
@@ -258,14 +270,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue_
 
 /***/ }),
 
-/***/ 0:
-/*!****************************!*\
-  !*** multi ./src/index.js ***!
-  \****************************/
+/***/ 1:
+/*!************************************!*\
+  !*** multi ./src/vue-installer.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! ./src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack://FrontendToolkit/multi_./src/index.js?");
+eval("module.exports = __webpack_require__(/*! ./src/vue-installer.js */\"./src/vue-installer.js\");\n\n\n//# sourceURL=webpack://FrontendToolkit/multi_./src/vue-installer.js?");
 
 /***/ })
 

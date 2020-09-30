@@ -1,30 +1,34 @@
 let baseProperty = 'portal';
 
-export default class {
+export default new class {
 
     isObject(val) {
         return typeof val === 'object' && val !== null;
     }
 
-    initialised() {
+    isInitialised() {
         return window.hasOwnProperty(baseProperty) && this.isObject(window[baseProperty]);
     }
 
-    static get(attributes = [], defaultTo = null) {
-        // attributes is [
+    get(attributes = [], defaultTo = null) {
+        if (this.has(attributes)) {
+            return attributes.reduce((returnVal, attribute) => returnVal[attribute], window[baseProperty]);
+        }
+        return defaultTo;
     }
 
-    static has(attributes = [], defaultTo = null) {
-        if(this.initialised) {
-            for(let i = 0; i++; i< attributes.length) {
-                console.log(i);
+    has(attributes = []) {
+        if (this.isInitialised()) {
+            for (let i = 0; i < attributes.length; i++) {
+                let testVal = window[baseProperty];
+                for(let j = 0; j < i; j++) {
+                    testVal = testVal[attributes[j]];
+                }
+                if(!this.isObject(testVal) || !testVal.hasOwnProperty(attributes[i])) {
+                    return false;
+                }
             }
         }
-        // attributes is [user, id]
-        // Check window is object, window has portal property.
-        // Check each attribute in turn, so
-            // Does window.portal have user property.
-            // If another attribute, is user an object
-                // Does window.portal.user have
+        return true;
     }
 }
