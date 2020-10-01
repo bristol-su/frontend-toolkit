@@ -46,6 +46,11 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
+            },
+            // Loader for .vue files
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
             }
         ]
     },
@@ -55,6 +60,9 @@ module.exports = {
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: ['dist/*'],
         }),
+
+        // Load Vue
+        new VueLoaderPlugin(),
 
         // Notify on completed build. Notify on error in production, or always in development
         new WebpackNotifierPlugin({
@@ -67,7 +75,8 @@ module.exports = {
         // Define aliases
         alias: {
             '@': path.resolve(__dirname, 'src'),
-        }
+        },
+        extensions: ['*', '.js', '.vue', '.json']
     },
     stats: {
         // Hide stats about child output
