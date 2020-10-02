@@ -182,19 +182,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _WindowAccessor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WindowAccessor */ \"./src/env/WindowAccessor.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (new class {\n  hasUser() {\n    return _WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].has(['user', 'id']) || _WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].has(['db_user', 'control_user']);\n  }\n\n  getUser() {\n    let user = _WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get(['user'], null);\n\n    if (user === null) {\n      return this.getControlUserFromDbUser();\n    }\n\n    return user;\n  }\n\n  getDataUser() {\n    return this.hasUser() ? this.getUser().data : null;\n  }\n\n  getControlUserFromDbUser() {\n    return _WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get(['db_user', 'control_user'], null);\n  }\n\n  getAuthenticatedUser() {\n    return _WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get(['db_user'], null);\n  }\n\n  isGuest() {\n    return !this.getAuthenticatedUser();\n  }\n\n}());\n\n//# sourceURL=webpack://FrontendToolkit/./src/env/Authentication.js?");
-
-/***/ }),
-
-/***/ "./src/env/WindowAccessor.js":
-/*!***********************************!*\
-  !*** ./src/env/WindowAccessor.js ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nlet baseProperty = 'portal';\n/* harmony default export */ __webpack_exports__[\"default\"] = (new class {\n  isObject(val) {\n    return typeof val === 'object' && val !== null;\n  }\n\n  isInitialised() {\n    return window.hasOwnProperty(baseProperty) && this.isObject(window[baseProperty]);\n  }\n\n  get(attributes = [], defaultTo = null) {\n    if (this.has(attributes)) {\n      return attributes.reduce((returnVal, attribute) => returnVal[attribute], window[baseProperty]);\n    }\n\n    return defaultTo;\n  }\n\n  has(attributes = []) {\n    if (this.isInitialised()) {\n      for (let i = 0; i < attributes.length; i++) {\n        let testVal = window[baseProperty];\n\n        for (let j = 0; j < i; j++) {\n          testVal = testVal[attributes[j]];\n        }\n\n        if (!this.isObject(testVal) || !testVal.hasOwnProperty(attributes[i])) {\n          return false;\n        }\n      }\n    }\n\n    return true;\n  }\n\n}());\n\n//# sourceURL=webpack://FrontendToolkit/./src/env/WindowAccessor.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_WindowAccessor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/utils/WindowAccessor */ \"./src/utils/WindowAccessor.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (new class {\n  hasUser() {\n    return _utils_WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].has(['user', 'id']) || _utils_WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].has(['db_user', 'control_user']);\n  }\n\n  getUser() {\n    let user = _utils_WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get(['user'], null);\n\n    if (user === null) {\n      return this.getControlUserFromDbUser();\n    }\n\n    return user;\n  }\n\n  getDataUser() {\n    return this.hasUser() ? this.getUser().data : null;\n  }\n\n  getControlUserFromDbUser() {\n    return _utils_WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get(['db_user', 'control_user'], null);\n  }\n\n  getAuthenticatedUser() {\n    return _utils_WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get(['db_user'], null);\n  }\n\n  isGuest() {\n    return !this.getAuthenticatedUser();\n  }\n\n}());\n\n//# sourceURL=webpack://FrontendToolkit/./src/env/Authentication.js?");
 
 /***/ }),
 
@@ -206,7 +194,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nlet baseProperty = 'portal';\
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Authentication__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Authentication */ \"./src/env/Authentication.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  authentication: _Authentication__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n});\n\n//# sourceURL=webpack://FrontendToolkit/./src/env/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _env_Authentication__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/env/Authentication */ \"./src/env/Authentication.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  authentication: _env_Authentication__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n});\n\n//# sourceURL=webpack://FrontendToolkit/./src/env/index.js?");
 
 /***/ }),
 
@@ -219,6 +207,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Aut
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _vuetify_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/vuetify/index */ \"./src/vuetify/index.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"vuetify\", function() { return _vuetify_index__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; });\n\n/* harmony import */ var _settings_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/settings/index */ \"./src/settings/index.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"settings\", function() { return _settings_index__WEBPACK_IMPORTED_MODULE_1__[\"default\"]; });\n\n/* harmony import */ var _env_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/env/index */ \"./src/env/index.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"environment\", function() { return _env_index__WEBPACK_IMPORTED_MODULE_2__[\"default\"]; });\n\n\n\n\n\n\n//# sourceURL=webpack://FrontendToolkit/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/settings/SiteSettings.js":
+/*!**************************************!*\
+  !*** ./src/settings/SiteSettings.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_WindowAccessor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/utils/WindowAccessor */ \"./src/utils/WindowAccessor.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (new class {\n  get(key) {\n    if (_utils_WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].has(['site_settings', key])) {\n      return _utils_WindowAccessor__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get(['site_settings', key]);\n    }\n\n    throw Error('Could not find setting ' + key);\n  }\n\n}());\n\n//# sourceURL=webpack://FrontendToolkit/./src/settings/SiteSettings.js?");
 
 /***/ }),
 
@@ -242,7 +242,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var js_c
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _settings_UserPreferences__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/settings/UserPreferences */ \"./src/settings/UserPreferences.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  'user': _settings_UserPreferences__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n});\n\n//# sourceURL=webpack://FrontendToolkit/./src/settings/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _settings_UserPreferences__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/settings/UserPreferences */ \"./src/settings/UserPreferences.js\");\n/* harmony import */ var _settings_SiteSettings__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/settings/SiteSettings */ \"./src/settings/SiteSettings.js\");\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  'user': _settings_UserPreferences__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n  'site': _settings_SiteSettings__WEBPACK_IMPORTED_MODULE_1__[\"default\"]\n});\n\n//# sourceURL=webpack://FrontendToolkit/./src/settings/index.js?");
+
+/***/ }),
+
+/***/ "./src/utils/WindowAccessor.js":
+/*!*************************************!*\
+  !*** ./src/utils/WindowAccessor.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nlet baseProperty = 'portal';\n/* harmony default export */ __webpack_exports__[\"default\"] = (new class {\n  isObject(val) {\n    return typeof val === 'object' && val !== null;\n  }\n\n  isInitialised() {\n    return window.hasOwnProperty(baseProperty) && this.isObject(window[baseProperty]);\n  }\n\n  get(attributes = [], defaultTo = null) {\n    if (this.has(attributes)) {\n      return attributes.reduce((returnVal, attribute) => returnVal[attribute], window[baseProperty]);\n    }\n\n    return defaultTo;\n  }\n\n  has(attributes = []) {\n    if (this.isInitialised()) {\n      for (let i = 0; i < attributes.length; i++) {\n        let testVal = window[baseProperty];\n\n        for (let j = 0; j < i; j++) {\n          testVal = testVal[attributes[j]];\n        }\n\n        if (!this.isObject(testVal) || !testVal.hasOwnProperty(attributes[i])) {\n          return false;\n        }\n      }\n    }\n\n    return true;\n  }\n\n}());\n\n//# sourceURL=webpack://FrontendToolkit/./src/utils/WindowAccessor.js?");
 
 /***/ }),
 

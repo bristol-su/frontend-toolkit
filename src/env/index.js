@@ -1,4 +1,4 @@
-import Authentication from './Authentication';
+import Authentication from '@/env/Authentication';
 
 export default {
     authentication: Authentication
