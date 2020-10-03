@@ -6,6 +6,7 @@ const VueInstaller = {
         Vue.component('csrf-token', CsrfToken);
 
         Vue.prototype.$tools = tools;
+        Vue.prototype.$translator = tools.translate.translator;
     }
 }
 

@@ -5,7 +5,7 @@ import env from '@/env/index';
 import validation from '@/validation/index';
 import utils from '@/utils/index';
 import csrf from '@/csrf/index';
-
+import translate from '@/translate/index';
 
 export {
     vuetify,
@@ -14,5 +14,6 @@ export {
     routes,
     validation,
     utils,
-    csrf
+    csrf,
+    translate
 }
