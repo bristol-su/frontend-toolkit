@@ -17,10 +17,10 @@ export default new class {
             throw new Error('Route with name [' + name + '] could not be found');
         }
 
-        let url = WindowAccessor.get(['named_routes', name])
+        let path = WindowAccessor.get(['named_routes', name])
         let urlParameters = Object.assign({}, parameters);
 
-        return url.replace(
+        return WindowAccessor.get(['app_url']) + '/' + path.replace(
           /{([^}]+)}/gi,
           (tag, i) => {
               let keyName = tag.replace(/{|}|\?/g, '');
