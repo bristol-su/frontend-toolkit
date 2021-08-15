@@ -1,4 +1,4 @@
-import env from './../env/index';
+import environment from './../environment/index';
 
 export default new class {
     /**
@@ -8,17 +8,17 @@ export default new class {
      */
     getWebQueryParameters() {
         let params = {};
-        if(env.authentication.hasUser()) {
-            params.u = env.authentication.getUser();
+        if(environment.authentication.hasUser()) {
+            params.u = environment.authentication.getUser();
         }
-        if(env.authentication.hasGroup()) {
-            params.g = env.authentication.getGroup();
+        if(environment.authentication.hasGroup()) {
+            params.g = environment.authentication.getGroup();
         }
-        if(env.authentication.hasRole()) {
-            params.r = env.authentication.getRole();
+        if(environment.authentication.hasRole()) {
+            params.r = environment.authentication.getRole();
         }
-        if(env.activityInstance.has()) {
-            params.a = env.activityInstance.get();
+        if(environment.activityInstance.has()) {
+            params.a = environment.activityInstance.get();
         }
         return params;
     }
@@ -30,17 +30,17 @@ export default new class {
      */
     getApiQueryParameters() {
         let params = {};
-        if(env.authentication.hasUser()) {
-            params.user_id = env.authentication.getUser();
+        if(environment.authentication.hasUser()) {
+            params.user_id = environment.authentication.getUser();
         }
-        if(env.authentication.hasGroup()) {
-            params.group_id = env.authentication.getGroup();
+        if(environment.authentication.hasGroup()) {
+            params.group_id = environment.authentication.getGroup();
         }
-        if(env.authentication.hasRole()) {
-            params.role_id = env.authentication.getRole();
+        if(environment.authentication.hasRole()) {
+            params.role_id = environment.authentication.getRole();
         }
-        if(env.activityInstance.has()) {
-            params.activity_instance_id = env.activityInstance.get();
+        if(environment.activityInstance.has()) {
+            params.activity_instance_id = environment.activityInstance.get();
         }
         return params;
     }

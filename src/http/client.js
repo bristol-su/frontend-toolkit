@@ -1,6 +1,5 @@
 import axios from 'axios';
 import routes from './../routes/index';
-import environment from './../environment/index';
 import csrf from './../csrf/index';
 
 const client = axios.create({
@@ -17,18 +16,7 @@ client.interceptors.request.use(function (config) {
     if (config.params === undefined) {
         config.params = {};
     }
-    if (environment.activityInstance.has()) {
-        config.params['activity_instance_id'] = environment.activityInstance.get().id;
-    }
-    if (environment.authentication.hasUser()) {
-        config.params['user_id'] = environment.authentication.getUser().id;
-    }
-    if (environment.authentication.hasGroup()) {
-        config.params['group_id'] = environment.authentication.getGroup().id;
-    }
-    if (environment.authentication.hasRole()) {
-        config.params['role_id'] = environment.authentication.getRole().id;
-    }
+    config.params = Object.assign(config.params, routes.query.getApiQueryParameters())
     return config;
 }, function (error) {
     return Promise.reject(error);

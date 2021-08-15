@@ -1,6 +1,5 @@
 import environment from './../environment/index';
 import WindowAccessor from '../utils/WindowAccessor';
-import {env} from 'webpack-cli/bin/.eslintrc';
 
 export default new class {
     moduleUrl() {
