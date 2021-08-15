@@ -12,6 +12,6 @@ export default new class {
                 environment.moduleInstance.get().alias
               ].join('/');
         }
-        throw new Error('The dependencies to generate the current module URL were not loaded globally');
+        return '';
     }
 }
