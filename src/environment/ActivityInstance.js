@@ -1,4 +1,4 @@
-import WindowAccessor from '@/utils/WindowAccessor';
+import WindowAccessor from './../utils/WindowAccessor';
 
 export default new class {
     /**
@@ -7,7 +7,7 @@ export default new class {
      * @returns {*}
      */
     has() {
-        return WindowAccessor.has(['activity', 'id']);
+        return WindowAccessor.has(['activity_instance', 'id']);
     }
 
     /**
@@ -16,7 +16,7 @@ export default new class {
      * @returns {*}
      */
     get() {
-        return WindowAccessor.get(['activity'], null);
+        return WindowAccessor.get(['activity_instance'], null);
     }
 
 }

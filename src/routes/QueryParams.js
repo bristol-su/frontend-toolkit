@@ -1,4 +1,4 @@
-import env from '@/env/index';
+import env from './../env/index';
 
 export default new class {
     /**

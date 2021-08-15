@@ -1,4 +1,4 @@
-import WindowAccessor from '@/utils/WindowAccessor';
+import WindowAccessor from './../utils/WindowAccessor';
 
 export default new class {
     /**

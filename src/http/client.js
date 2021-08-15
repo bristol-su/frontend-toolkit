@@ -1,21 +1,21 @@
 import axios from 'axios';
 
-const client = axios.create({
-    baseURL: portal.API_URL + '/' + portal.A_OR_P + '/' + portal.ACTIVITY_SLUG + '/' + portal.MODULE_INSTANCE_SLUG + '/' + portal.ALIAS
+const axiosInstance = axios.create({
+    baseURL: portal.API_URL + '/' + (portal.admin ? 'a' : 'p') + '/' + portal.activity.slug + '/' + portal.module_instance.slug + '/' + portal.module_instance.alias
 });
 
-client.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axiosInstance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 let token = document.head.querySelector('meta[name="csrf-token"]');
 if (token) {
-    client.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    axiosInstance.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 }
 
-client.interceptors.request.use(function (config) {
+axiosInstance.interceptors.request.use(function (config) {
     if (config.params === undefined) {
         config.params = {};
     }
     if (portal.activityinstance !== null) {
-        config.params['activity_instance_id'] = portal.activityinstance.id;
+        config.params['activity_instance_id'] = portal.activity_instance.id;
     }
     if (portal.group !== null) {
         config.params['group_id'] = portal.group.id;
@@ -31,7 +31,7 @@ client.interceptors.request.use(function (config) {
     return Promise.reject(error);
 });
 
-client.interceptors.response.use(function (response) {
+axiosInstance.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     if (window.hasOwnProperty('processErrorsFromAxios') && typeof window.processErrorsFromAxios === 'function') {
@@ -40,4 +40,4 @@ client.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-export default client;
+export default axiosInstance;
