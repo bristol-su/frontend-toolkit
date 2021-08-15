@@ -1,7 +1,11 @@
-import Authentication from '@/env/Authentication';
+import Authentication from './Authentication';
 import ActivityInstance from './ActivityInstance';
+import ModuleInstance from './ModuleInstance';
+import Activity from './Activity';
 
 export default {
     authentication: Authentication,
-    activityInstance: ActivityInstance
+    activityInstance: ActivityInstance,
+    moduleInstance: ModuleInstance,
+    activity: Activity
 }

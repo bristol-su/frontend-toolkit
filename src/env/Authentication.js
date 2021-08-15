@@ -7,16 +7,7 @@ export default new class {
      * @returns {*}
      */
     hasUser() {
-        return WindowAccessor.has(['user', 'id']) || WindowAccessor.has(['db_user', 'control_user']);
-    }
-
-    /**
-     * Get a control user through control only
-     *
-     * @returns {*}
-     */
-    getControlUser() {
-        return WindowAccessor.get(['user'], null);
+        return WindowAccessor.has(['user', 'id']);
     }
 
     /**
@@ -24,11 +15,7 @@ export default new class {
      * @returns {*}
      */
     getUser() {
-        let user = this.getControlUser();
-        if(user === null) {
-            return this.getControlUserFromDbUser();
-        }
-        return user;
+        return WindowAccessor.get(['user'], null);
     }
 
     /**
@@ -40,30 +27,12 @@ export default new class {
     }
 
     /**
-     * Get a control user through the logged in user
-     *
-     * @returns {*}
-     */
-    getControlUserFromDbUser() {
-        return WindowAccessor.get(['db_user', 'control_user'], null);
-    }
-
-    /**
-     * Get the database user
-     * 0
-     * @returns {*}
-     */
-    getAuthenticatedUser() {
-        return WindowAccessor.get(['db_user'], null);
-    }
-
-    /**
      * Check if the current session is a guest (no user is logged in)
      *
      * @returns {boolean}
      */
     isGuest() {
-        return !this.getAuthenticatedUser();
+        return !this.getUser();
     }
 
     hasRole() {
