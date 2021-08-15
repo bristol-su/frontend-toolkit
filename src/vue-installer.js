@@ -12,4 +12,4 @@ const VueInstaller = {
     }
 }
 
-export {VueInstaller, vuetify};
+export {VueInstaller};
