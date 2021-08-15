@@ -31,12 +31,13 @@
     },
     "homepage": "https://github.com/bristol-su/frontend-toolkit#readme",
     "devDependencies": {
-        "@bristol-su/portal-ui-kit": "github:bristol-su/portal-ui-kit#PR-361",
         "@babel/core": "^7.11.6",
         "@babel/preset-env": "^7.11.5",
+        "@bristol-su/portal-ui-kit": "github:bristol-su/portal-ui-kit#PR-361",
         "babel-loader": "^8.1.0",
         "clean-webpack-plugin": "^3.0.0",
         "cross-env": "^7.0.2",
+        "css-loader": "^4.3.0",
         "deepmerge": "^4.2.2",
         "mini-css-extract-plugin": "^0.11.3",
         "optimize-css-assets-webpack-plugin": "^5.0.4",
@@ -48,8 +49,7 @@
         "webpack": "^4.44.1",
         "webpack-assets-manifest": "^3.1.1",
         "webpack-cli": "^3.3.12",
-        "webpack-notifier": "^1.8.0",
-        "css-loader": "^4.3.0"
+        "webpack-notifier": "^1.8.0"
     },
     "dependencies": {
         "axios": "^0.20.0",
