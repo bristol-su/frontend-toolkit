@@ -1,37 +1,40 @@
 import axios from 'axios';
+import routes from './../routes/index';
+import environment from './../environment/index';
+import csrf from './../csrf/index';
 
-const axiosInstance = axios.create({
-    baseURL: portal.API_URL + '/' + (portal.admin ? 'a' : 'p') + '/' + portal.activity.slug + '/' + portal.module_instance.slug + '/' + portal.module_instance.alias
+const client = axios.create({
+    baseURL: routes.module.moduleUrl()
 });
 
-axiosInstance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-let token = document.head.querySelector('meta[name="csrf-token"]');
-if (token) {
-    axiosInstance.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+client.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+if (csrf.hasCsrf()) {
+    client.defaults.headers.common['X-CSRF-TOKEN'] = csrf.csrf();
 }
 
-axiosInstance.interceptors.request.use(function (config) {
+
+client.interceptors.request.use(function (config) {
     if (config.params === undefined) {
         config.params = {};
     }
-    if (portal.activityinstance !== null) {
-        config.params['activity_instance_id'] = portal.activity_instance.id;
+    if (environment.activityInstance.has()) {
+        config.params['activity_instance_id'] = environment.activityInstance.get().id;
     }
-    if (portal.group !== null) {
-        config.params['group_id'] = portal.group.id;
+    if (environment.authentication.hasUser()) {
+        config.params['user_id'] = environment.authentication.getUser().id;
     }
-    if (portal.role !== null) {
-        config.params['role_id'] = portal.role.id;
+    if (environment.authentication.hasGroup()) {
+        config.params['group_id'] = environment.authentication.getGroup().id;
     }
-    if (portal.user !== null) {
-        config.params['user_id'] = portal.user.id;
+    if (environment.authentication.hasRole()) {
+        config.params['role_id'] = environment.authentication.getRole().id;
     }
     return config;
 }, function (error) {
     return Promise.reject(error);
 });
 
-axiosInstance.interceptors.response.use(function (response) {
+client.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     if (window.hasOwnProperty('processErrorsFromAxios') && typeof window.processErrorsFromAxios === 'function') {
@@ -40,4 +43,4 @@ axiosInstance.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-export default axiosInstance;
+export default client;
