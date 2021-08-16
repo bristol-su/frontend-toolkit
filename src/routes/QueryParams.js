@@ -9,16 +9,16 @@ export default new class {
     getWebQueryParameters() {
         let params = {};
         if(environment.authentication.hasUser()) {
-            params.u = environment.authentication.getUser();
+            params.u = environment.authentication.getUser().id;
         }
         if(environment.authentication.hasGroup()) {
-            params.g = environment.authentication.getGroup();
+            params.g = environment.authentication.getGroup().id;
         }
         if(environment.authentication.hasRole()) {
-            params.r = environment.authentication.getRole();
+            params.r = environment.authentication.getRole().id;
         }
         if(environment.activityInstance.has()) {
-            params.a = environment.activityInstance.get();
+            params.a = environment.activityInstance.get().id;
         }
         return params;
     }
@@ -31,16 +31,16 @@ export default new class {
     getApiQueryParameters() {
         let params = {};
         if(environment.authentication.hasUser()) {
-            params.user_id = environment.authentication.getUser();
+            params.user_id = environment.authentication.getUser().id;
         }
         if(environment.authentication.hasGroup()) {
-            params.group_id = environment.authentication.getGroup();
+            params.group_id = environment.authentication.getGroup().id;
         }
         if(environment.authentication.hasRole()) {
-            params.role_id = environment.authentication.getRole();
+            params.role_id = environment.authentication.getRole().id;
         }
         if(environment.activityInstance.has()) {
-            params.activity_instance_id = environment.activityInstance.get();
+            params.activity_instance_id = environment.activityInstance.get().id;
         }
         return params;
     }
