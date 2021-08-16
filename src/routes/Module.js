@@ -5,7 +5,7 @@ export default new class {
     moduleUrl() {
         if(WindowAccessor.has('APP_URL') && environment.activity.has() && environment.moduleInstance.has()) {
             return [
-              WindowAccessor.has('APP_URL'),
+              WindowAccessor.get('APP_URL'),
                 (environment.authentication.admin() ? 'a' : 'p'),
                 environment.activity.get().slug,
                 environment.moduleInstance.get().slug,
