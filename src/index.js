@@ -12,7 +12,6 @@ export {
     environment,
     http,
     routes,
-    settings,
     utils,
     validation,
     generator,

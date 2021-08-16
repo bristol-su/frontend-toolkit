@@ -11,6 +11,9 @@ export default new class {
     }
 
     get(attributes = [], defaultTo = null) {
+        if(!Array.isArray(attributes)) {
+            attributes = [attributes];
+        }
         if (this.has(attributes)) {
             return attributes.reduce((returnVal, attribute) => returnVal[attribute], window[baseProperty]);
         }
@@ -18,6 +21,9 @@ export default new class {
     }
 
     has(attributes = []) {
+        if(!Array.isArray(attributes)) {
+            attributes = [attributes];
+        }
         if (this.isInitialised()) {
             for (let i = 0; i < attributes.length; i++) {
                 let testVal = window[baseProperty];

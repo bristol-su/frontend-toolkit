@@ -8,6 +8,8 @@ export default {
 
         Vue.prototype.$tools = tools;
 
+        Vue.prototype.$http = tools.http;
+
         Vue.use(UiKit)
     }
 }

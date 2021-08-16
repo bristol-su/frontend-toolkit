@@ -54,4 +54,8 @@ export default new class {
     admin() {
         return WindowAccessor.get(['admin'], false)
     }
+
+    participant() {
+        return !this.admin();
+    }
 }

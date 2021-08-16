@@ -1,7 +1,7 @@
-import ServerValidation from './../validation/ServerValidation';
+import Errors from './../validation/Errors';
 import OldInput from './../validation/OldInput';
 
 export default {
-    server: ServerValidation,
+    errors: Errors,
     oldInput: OldInput
 }

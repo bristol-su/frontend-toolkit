@@ -12,6 +12,6 @@ export default new class {
                 environment.moduleInstance.get().alias
               ].join('/');
         }
-        return '';g
+        return '';
     }
 }
