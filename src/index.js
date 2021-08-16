@@ -1,4 +1,3 @@
-import settings from './settings/index';
 import routes from './routes/index';
 import environment from './environment/index';
 import validation from './validation/index';
