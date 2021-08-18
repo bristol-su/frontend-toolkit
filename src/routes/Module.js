@@ -13,7 +13,7 @@ export default new class {
               ].join('/');
         }
         return '';
-    },
+    }
     moduleApiUrl() {
         if(WindowAccessor.has('API_URL') && environment.activity.has() && environment.moduleInstance.has()) {
             return [
