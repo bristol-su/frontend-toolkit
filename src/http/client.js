@@ -3,7 +3,7 @@ import routes from './../routes/index';
 import csrf from './../csrf/index';
 
 const client = axios.create({
-    baseURL: routes.module.moduleUrl()
+    baseURL: routes.module.moduleApiUrl()
 });
 
 client.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
