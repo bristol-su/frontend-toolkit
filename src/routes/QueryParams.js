@@ -55,8 +55,8 @@ export default new class {
         let parsedUrl = new URL(url);
         let params = this.getWebQueryParameters();
 
-        Object.keys(params).each(key => {
-            parsedUrl.searchParams.set(key, params[key]);
+        Object.entries(params).each(([key, value]) => {
+            parsedUrl.searchParams.set(key, value);
         })
         return parsedUrl.toString();
     }
@@ -71,8 +71,8 @@ export default new class {
         let parsedUrl = new URL(url);
         let params = this.getWebQueryParameters();
 
-        Object.keys(params).each(key => {
-            parsedUrl.searchParams.set(key, params[key]);
+        Object.entries(params).each(([key, value]) => {
+            parsedUrl.searchParams.set(key, value);
         })
         return parsedUrl.toString();
     }
