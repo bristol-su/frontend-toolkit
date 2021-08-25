@@ -25,9 +25,9 @@ export default new class {
             attributes = [attributes];
         }
         if (this.isInitialised()) {
-            for (let i = 0; i < attributes.length; i++) {
-                let testVal = window[baseProperty];
-                for(let j = 0; j < i; j++) {
+            for (let i = 0; i < attributes.length; i++) { // Iterate through each of the attrbutes given
+                let testVal = window[baseProperty]; // Get the base attribute
+                for(let j = 0; j < i; j++) { // Iterate through each of the attributes given, starting with just the first, then the first and second etc.
                     testVal = testVal[attributes[j]];
                 }
                 if(!this.isObject(testVal) || !testVal.hasOwnProperty(attributes[i])) {
