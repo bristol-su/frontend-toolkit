@@ -40,7 +40,7 @@ export default new class {
     }
 
     getRole() {
-        return WindowAccessor.get(['role', 'id']);
+        return WindowAccessor.get(['role']);
     }
 
     hasGroup() {
@@ -48,7 +48,7 @@ export default new class {
     }
 
     getGroup() {
-        return WindowAccessor.get(['group', 'id']);
+        return WindowAccessor.get(['group']);
     }
 
     admin() {
