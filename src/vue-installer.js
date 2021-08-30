@@ -11,6 +11,12 @@ export default {
         Vue.prototype.$http = tools.http;
         Vue.prototype.$httpBasic = tools.httpBasic;
 
-        Vue.use(UiKit)
+        Vue.use(UiKit, {
+            errors: {
+                all: () => tools.validation.errors.all(),
+                has: (key) => tools.validation.errors.has(key),
+                get: (key) => tools.validation.errors.get(key),
+            }
+        })
     }
 }
