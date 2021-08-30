@@ -51,6 +51,10 @@ export default new class {
         return WindowAccessor.get(['group']);
     }
 
+    getPosition() {
+        return WindowAccessor.get(['position']);
+    }
+
     admin() {
         return WindowAccessor.get(['admin'], false)
     }
