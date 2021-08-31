@@ -1,4 +1,5 @@
 import WindowAccessor from '../utils/WindowAccessor';
+import ApiErrors from './ApiErrors';
 
 export default new class {
 
@@ -11,6 +12,6 @@ export default new class {
     }
 
     all() {
-        return WindowAccessor.get(['server_validation_errors']);
+        return Object.assign(WindowAccessor.get(['server_validation_errors']), ApiErrors.all());
     }
 }
