@@ -12,6 +12,10 @@ export default new class {
     }
 
     all() {
-        return Object.assign(WindowAccessor.get(['server_validation_errors']), ApiErrors.all());
+        let serverErrors = WindowAccessor.get(['server_validation_errors'], {});
+        if(Array.isArray(serverErrors)) {
+            serverErrors = {};
+        }
+        return Object.assign(serverErrors, ApiErrors.all());
     }
 }

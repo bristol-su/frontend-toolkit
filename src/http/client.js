@@ -2,6 +2,7 @@ import axios from 'axios';
 import routes from './../routes/index';
 import csrf from './../csrf/index';
 import ApiErrors from '../validation/ApiErrors';
+import Vue from 'vue';
 
 const client = axios.create({
     baseURL: routes.module.moduleApiUrl()
@@ -26,10 +27,9 @@ client.interceptors.request.use(function (config) {
 client.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
-    console.log(error);
-    console.log('^ is defined in the frontend toolkit, http client & basic client')
-    if(error.code === 422) {
-        ApiErrors.set(error.content);
+    if(error.response.status === 422 && error.response.data.hasOwnProperty('errors')) {
+        ApiErrors.set(error.response.data.errors);
+        Vue.prototype.$ui.eventBus.$emit('errors-updated');
     }
     return Promise.reject(error);
 });
