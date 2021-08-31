@@ -7,7 +7,7 @@ export default new class {
     }
 
     isInitialised() {
-        return window.hasOwnProperty(baseProperty) && this.isObject(window[baseProperty]);
+        return global.hasOwnProperty(baseProperty) && this.isObject(global[baseProperty]);
     }
 
     get(attributes = [], defaultTo = null) {
@@ -15,7 +15,7 @@ export default new class {
             attributes = [attributes];
         }
         if (this.has(attributes)) {
-            return attributes.reduce((returnVal, attribute) => returnVal[attribute], window[baseProperty]);
+            return attributes.reduce((returnVal, attribute) => returnVal[attribute], global[baseProperty]);
         }
         return defaultTo;
     }
@@ -26,7 +26,7 @@ export default new class {
         }
         if (this.isInitialised()) {
             for (let i = 0; i < attributes.length; i++) { // Iterate through each of the attrbutes given
-                let testVal = window[baseProperty]; // Get the base attribute
+                let testVal = global[baseProperty]; // Get the base attribute
                 for(let j = 0; j < i; j++) { // Iterate through each of the attributes given, starting with just the first, then the first and second etc.
                     testVal = testVal[attributes[j]];
                 }

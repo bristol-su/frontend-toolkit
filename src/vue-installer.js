@@ -11,6 +11,10 @@ export default {
         Vue.prototype.$http = tools.http;
         Vue.prototype.$httpBasic = tools.httpBasic;
 
+        // On getting an error,
+            // get the json from the response
+            // Set it using
+
         Vue.use(UiKit, {
             errors: {
                 all: () => tools.validation.errors.all(),
