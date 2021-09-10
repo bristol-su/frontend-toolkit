@@ -2,7 +2,7 @@ import WindowAccessor from './../utils/WindowAccessor';
 
 export default new class {
     all() {
-        return WindowAccessor.get(['old_input'], []);
+        return WindowAccessor.get(['old_input'], {});
     }
 
     has(key) {
