@@ -20,6 +20,11 @@ export default {
                 all: () => tools.validation.errors.all(),
                 has: (key) => tools.validation.errors.has(key),
                 get: (key) => tools.validation.errors.get(key),
+            },
+            old: {
+                all: () => tools.validation.oldInput.all(),
+                has: (key) => tools.validation.oldInput.has(key),
+                get: (key) => tools.validation.oldInput.get(key),
             }
         })
     }
