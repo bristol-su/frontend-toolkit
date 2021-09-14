@@ -1,6 +1,7 @@
 import * as tools from './index';
 import CsrfToken from './csrf/CsrfToken';
 import UiKit from '@bristol-su/portal-ui-kit';
+import Vuex from 'vuex'
 
 export default {
     install: function (Vue) {
@@ -10,11 +11,13 @@ export default {
 
         Vue.prototype.$http = tools.http;
         Vue.prototype.$httpBasic = tools.httpBasic;
+        Vue.prototype.$isLoading = (name) => tools.store.getters.isLoading(name);
 
         // On getting an error,
             // get the json from the response
             // Set it using
 
+        Vue.use(Vuex)
         Vue.use(UiKit, {
             errors: {
                 all: () => tools.validation.errors.all(),

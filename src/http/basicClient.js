@@ -3,6 +3,7 @@ import routes from './../routes/index';
 import csrf from './../csrf/index';
 import ApiErrors from '../validation/ApiErrors';
 import Vue from 'vue';
+import store from './../store/store';
 
 const basicClient = axios.create({
     baseURL: routes.basic.baseApiUrl()
@@ -13,7 +14,22 @@ if (csrf.hasCsrf()) {
     basicClient.defaults.headers.common['X-CSRF-TOKEN'] = csrf.csrf();
 }
 
+let getRequestName = (config) => {
+    if(config.hasOwnProperty('name')) {
+        return config.name;
+    }
+    return config.method + ':' + config.baseURL + config.url;
+}
 
+// Set the request as loading
+basicClient.interceptors.request.use(function (config) {
+    store.commit('loading', {name: getRequestName(config)});
+    return config;
+}, function (error) {
+    return Promise.reject(error);
+});
+
+// Add authentication credentials
 basicClient.interceptors.request.use(function (config) {
     if (config.params === undefined) {
         config.params = {};
@@ -24,6 +40,16 @@ basicClient.interceptors.request.use(function (config) {
     return Promise.reject(error);
 });
 
+// Stop the request from loading
+basicClient.interceptors.response.use(function (response) {
+    store.commit('finishedLoading', {name: getRequestName(response.config)})
+    return response;
+}, function (error) {
+    store.commit('finishedLoading', {name: getRequestName(error.config)})
+    return Promise.reject(error);
+});
+
+// Set errors in the toolkit
 basicClient.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
