@@ -3,15 +3,19 @@ import Vue from 'vue';
 export const namespaced = true;
 
 export const state = {
-    loading: {}
+    loading: []
 }
 
 export const mutations = {
     START_LOADING(state, payload) {
-        Vue.set(state, payload.name, true)
+        if(state.loading.indexOf(payload.name) === -1) {
+            state.loading.push(payload.name)
+        }
     },
     STOP_LOADING(state, payload) {
-        Vue.set(state, payload.name, false)
+        if(state.loading.indexOf(payload.name) !== -1) {
+            state.loading.splice(state.loading.indexOf(payload.name), 1)
+        }
     }
 }
 
@@ -20,6 +24,6 @@ export const actions = {
 
 export const getters = {
     isLoading: (state) => (name) => {
-        return state.loading.hasOwnProperty(name) && state.loading[name] === true
+        return state.loading.indexOf(name) !== -1;
     }
 }
