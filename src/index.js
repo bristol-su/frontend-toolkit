@@ -6,7 +6,6 @@ import csrf from './csrf/index';
 import http from './http/client';
 import httpBasic from './http/basicClient';
 import generator from './formGenerator/index';
-import store from './store/store'
 
 export {
     csrf,
@@ -17,5 +16,4 @@ export {
     utils,
     validation,
     generator,
-    store
 }

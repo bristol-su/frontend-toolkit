@@ -2,22 +2,23 @@ import * as tools from './index';
 import CsrfToken from './csrf/CsrfToken';
 import UiKit from '@bristol-su/portal-ui-kit';
 import Vuex from 'vuex'
+import loading from './store/modules/loading'
 
 export default {
     install: function (Vue) {
+        Vue.use(Vuex);
+
         Vue.component('csrf-token', CsrfToken);
 
         Vue.prototype.$tools = tools;
 
         Vue.prototype.$http = tools.http;
         Vue.prototype.$httpBasic = tools.httpBasic;
-        Vue.prototype.$isLoading = (name) => tools.store.getters.isLoading(name);
+        Vue.prototype.$isLoading = (name) => Vue.prototype.$store.getters.isLoading(name);
 
-        // On getting an error,
-            // get the json from the response
-            // Set it using
+        Vue.prototype.$store = new Vuex.Store({});
+        Vue.prototype.$store.registerModule('loading', loading);
 
-        Vue.use(Vuex)
         Vue.use(UiKit, {
             errors: {
                 all: () => tools.validation.errors.all(),

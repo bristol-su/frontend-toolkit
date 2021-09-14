@@ -3,7 +3,6 @@ import routes from './../routes/index';
 import csrf from './../csrf/index';
 import ApiErrors from '../validation/ApiErrors';
 import Vue from 'vue';
-import store from './../store/store';
 
 const basicClient = axios.create({
     baseURL: routes.basic.baseApiUrl()
@@ -23,7 +22,7 @@ let getRequestName = (config) => {
 
 // Set the request as loading
 basicClient.interceptors.request.use(function (config) {
-    store.commit('loading', {name: getRequestName(config)});
+    Vue.prototype.$store.commit('loading', {name: getRequestName(config)});
     return config;
 }, function (error) {
     return Promise.reject(error);
@@ -42,10 +41,10 @@ basicClient.interceptors.request.use(function (config) {
 
 // Stop the request from loading
 basicClient.interceptors.response.use(function (response) {
-    store.commit('finishedLoading', {name: getRequestName(response.config)})
+    Vue.prototype.$store.commit('finishedLoading', {name: getRequestName(response.config)})
     return response;
 }, function (error) {
-    store.commit('finishedLoading', {name: getRequestName(error.config)})
+    Vue.prototype.$store.commit('finishedLoading', {name: getRequestName(error.config)})
     return Promise.reject(error);
 });
 
