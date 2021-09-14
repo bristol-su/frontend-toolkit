@@ -17,7 +17,7 @@ let getRequestName = (config) => {
     if(config.hasOwnProperty('name')) {
         return config.name;
     }
-    return config.method + ':' + config.baseURL + config.url;
+    return config.method + ':' + config.url;
 }
 
 // Set the request as loading

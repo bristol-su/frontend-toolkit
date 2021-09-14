@@ -18,7 +18,7 @@ let getRequestName = (config) => {
     if(config.hasOwnProperty('name')) {
         return config.name;
     }
-    return config.method + ':' + config.baseURL + config.url;
+    return config.method + ':' + config.url;
 }
 
 // Set the request as loading
@@ -40,10 +40,18 @@ client.interceptors.request.use(function (config) {
     return Promise.reject(error);
 });
 
+// Stop the request from loading
+client.interceptors.response.use(function (response) {
+    Vue.prototype.$loading.stopLoading(getRequestName(response.config));
+    return response;
+}, function (error) {
+    Vue.prototype.$loading.stopLoading(getRequestName(error.config));
+    return Promise.reject(error);
+});
+
 client.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
-    console.log(error);
     if(error.response.status === 422 && error.response.data.hasOwnProperty('errors')) {
         ApiErrors.set(error.response.data.errors);
         Vue.prototype.$ui.eventBus.$emit('errors-updated');
@@ -51,13 +59,5 @@ client.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-// Stop the request from loading
-basicClient.interceptors.response.use(function (response) {
-    Vue.prototype.$loading.stopLoading(getRequestName(response.config));
-    return response;
-}, function (error) {
-    Vue.prototype.$loading.stopLoading(getRequestName(error.config));
-    return Promise.reject(error);
-});
 
 export default client;
