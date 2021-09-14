@@ -2,11 +2,17 @@ import * as tools from './index';
 import CsrfToken from './csrf/CsrfToken';
 import UiKit from '@bristol-su/portal-ui-kit';
 import Vuex from 'vuex'
-import loading from './store/modules/loading'
+import * as loading from './store/modules/loading';
 
 export default {
     install: function (Vue) {
         Vue.use(Vuex);
+
+        const store = new Vuex.Store({
+            modules: {
+                loading: loading
+            }
+        });
 
         Vue.component('csrf-token', CsrfToken);
 
@@ -14,10 +20,13 @@ export default {
 
         Vue.prototype.$http = tools.http;
         Vue.prototype.$httpBasic = tools.httpBasic;
-        Vue.prototype.$isLoading = (name) => Vue.prototype.$store.getters.isLoading(name);
-
-        Vue.prototype.$store = new Vuex.Store({});
-        Vue.prototype.$store.registerModule('loading', loading);
+        Vue.prototype.$isLoading = (name) => Vue.prototype.$loading.isLoading(name);
+        Vue.prototype.$loading = {
+            isLoading: (name) => store.getters['loading/isLoading'](name),
+            startLoading: (name) => store.commit('loading/START_LOADING', {name: name}),
+            stopLoading: (name) => store.commit('loading/STOP_LOADING', {name: name}),
+        }
+        Vue.prototype.$store = store;
 
         Vue.use(UiKit, {
             errors: {

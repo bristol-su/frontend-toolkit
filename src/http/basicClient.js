@@ -22,7 +22,7 @@ let getRequestName = (config) => {
 
 // Set the request as loading
 basicClient.interceptors.request.use(function (config) {
-    Vue.prototype.$store.commit('loading', {name: getRequestName(config)});
+    Vue.prototype.$loading.startLoading(getRequestName(config));
     return config;
 }, function (error) {
     return Promise.reject(error);
@@ -41,10 +41,10 @@ basicClient.interceptors.request.use(function (config) {
 
 // Stop the request from loading
 basicClient.interceptors.response.use(function (response) {
-    Vue.prototype.$store.commit('finishedLoading', {name: getRequestName(response.config)})
+    Vue.prototype.$loading.stopLoading(getRequestName(response.config));
     return response;
 }, function (error) {
-    Vue.prototype.$store.commit('finishedLoading', {name: getRequestName(error.config)})
+    Vue.prototype.$loading.stopLoading(getRequestName(error.config));
     return Promise.reject(error);
 });
 

@@ -3,6 +3,7 @@ import routes from './../routes/index';
 import csrf from './../csrf/index';
 import ApiErrors from '../validation/ApiErrors';
 import Vue from 'vue';
+import basicClient from '@bristol-su/frontend-toolkit/src/http/basicClient';
 
 const client = axios.create({
     baseURL: routes.module.moduleApiUrl()
@@ -22,7 +23,7 @@ let getRequestName = (config) => {
 
 // Set the request as loading
 client.interceptors.request.use(function (config) {
-    Vue.prototype.$store.commit('loading', {name: getRequestName(config)});
+    Vue.prototype.$loading.startLoading(getRequestName(config));
     return config;
 }, function (error) {
     return Promise.reject(error);
@@ -42,6 +43,7 @@ client.interceptors.request.use(function (config) {
 client.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
+    console.log(error);
     if(error.response.status === 422 && error.response.data.hasOwnProperty('errors')) {
         ApiErrors.set(error.response.data.errors);
         Vue.prototype.$ui.eventBus.$emit('errors-updated');
@@ -50,11 +52,11 @@ client.interceptors.response.use(function (response) {
 });
 
 // Stop the request from loading
-client.interceptors.response.use(function (response) {
-    Vue.prototype.$store.commit('finishedLoading', {name: getRequestName(response.config)})
+basicClient.interceptors.response.use(function (response) {
+    Vue.prototype.$loading.stopLoading(getRequestName(response.config));
     return response;
 }, function (error) {
-    Vue.prototype.$store.commit('finishedLoading', {name: getRequestName(error.config)})
+    Vue.prototype.$loading.stopLoading(getRequestName(error.config));
     return Promise.reject(error);
 });
 
