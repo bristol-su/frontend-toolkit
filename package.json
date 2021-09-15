@@ -30,32 +30,12 @@
         "url": "https://tobytwigger.myjetbrains.com"
     },
     "homepage": "https://github.com/bristol-su/frontend-toolkit#readme",
-    "devDependencies": {
-        "@babel/core": "^7.11.6",
-        "@babel/preset-env": "^7.11.5",
-        "babel-loader": "^8.1.0",
-        "clean-webpack-plugin": "^3.0.0",
-        "cross-env": "^7.0.2",
-        "css-loader": "^4.3.0",
-        "deepmerge": "^4.2.2",
-        "mini-css-extract-plugin": "^0.11.3",
-        "optimize-css-assets-webpack-plugin": "^5.0.4",
-        "sass": "^1.26.11",
-        "sass-loader": "^10.0.2",
-        "terser-webpack-plugin": "^4.2.2",
-        "vue-loader": "^15.9.3",
-        "vue-template-compiler": "^2.6.12",
-        "webpack": "^4.44.1",
-        "webpack-assets-manifest": "^3.1.1",
-        "webpack-cli": "^3.3.12",
-        "webpack-notifier": "^1.8.0"
-    },
+    "devDependencies": {},
     "dependencies": {
         "@bristol-su/portal-ui-kit": "github:bristol-su/portal-ui-kit#PR-344/epic",
-        "axios": "^0.20.0",
-        "js-cookie": "^2.2.1",
+        "axios": "^0.21.4",
+        "js-cookie": "^3.0.1",
         "vue": "^2.6.12",
-        "vuetify": "^2.3.12",
         "vuex": "^3.6.2"
     }
 }
