@@ -3,15 +3,14 @@ import routes from './../routes/index';
 import csrf from './../csrf/index';
 import ApiErrors from '../validation/ApiErrors';
 import Vue from 'vue';
-import basicClient from '@bristol-su/frontend-toolkit/src/http/basicClient';
 
-const client = axios.create({
-    baseURL: routes.module.moduleApiUrl()
+const basicClient = axios.create({
+    baseURL: routes.basic.baseApiUrl()
 });
 
-client.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+basicClient.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 if (csrf.hasCsrf()) {
-    client.defaults.headers.common['X-CSRF-TOKEN'] = csrf.csrf();
+    basicClient.defaults.headers.common['X-CSRF-TOKEN'] = csrf.csrf();
 }
 
 let getRequestName = (config) => {
@@ -22,7 +21,7 @@ let getRequestName = (config) => {
 }
 
 // Set the request as loading
-client.interceptors.request.use(function (config) {
+basicClient.interceptors.request.use(function (config) {
     Vue.prototype.$loading.startLoading(getRequestName(config));
     return config;
 }, function (error) {
@@ -30,7 +29,7 @@ client.interceptors.request.use(function (config) {
 });
 
 // Add authentication credentials
-client.interceptors.request.use(function (config) {
+basicClient.interceptors.request.use(function (config) {
     if (config.params === undefined) {
         config.params = {};
     }
@@ -41,7 +40,7 @@ client.interceptors.request.use(function (config) {
 });
 
 // Stop the request from loading
-client.interceptors.response.use(function (response) {
+basicClient.interceptors.response.use(function (response) {
     Vue.prototype.$loading.stopLoading(getRequestName(response.config));
     return response;
 }, function (error) {
@@ -49,7 +48,8 @@ client.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-client.interceptors.response.use(function (response) {
+// Set errors in the toolkit
+basicClient.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     if(error.response.status === 422 && error.response.data.hasOwnProperty('errors')) {
@@ -59,5 +59,4 @@ client.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-
-export default client;
+export default basicClient;

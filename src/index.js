@@ -1,19 +1,19 @@
-import vuetify from '@/vuetify/index';
-import settings from '@/settings/index';
-import routes from '@/routes/index';
-import env from '@/env/index';
-import validation from '@/validation/index';
-import utils from '@/utils/index';
-import csrf from '@/csrf/index';
-import translate from '@/translate/index';
+import routes from './routes/index';
+import environment from './environment/index';
+import validation from './validation/index';
+import utils from './utils/index';
+import csrf from './csrf/index';
+import http from './http/client';
+import httpBasic from './http/basicClient';
+import generator from './formGenerator/index';
 
 export {
-    vuetify,
-    settings,
-    env as environment,
-    routes,
-    validation,
-    utils,
     csrf,
-    translate
+    environment,
+    http,
+    httpBasic,
+    routes,
+    utils,
+    validation,
+    generator,
 }

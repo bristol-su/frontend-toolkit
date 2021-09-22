@@ -1,7 +1,9 @@
-import ServerValidation from '@/validation/ServerValidation';
-import OldInput from '@/validation/OldInput';
+import ApiErrors from './ApiErrors';
+import Errors from './Errors';
+import OldInput from './OldInput';
 
 export default {
-    server: ServerValidation,
-    oldInput: OldInput
+    errors: Errors,
+    oldInput: OldInput,
+    apiErrors: ApiErrors
 }
