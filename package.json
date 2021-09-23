@@ -1,6 +1,6 @@
 {
     "name": "@bristol-su/frontend-toolkit",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A toolkit for creating a module frontend for the Bristol SU Portal",
     "main": "./src/vue-installer.js",
     "scripts": {
@@ -36,7 +36,7 @@
     "homepage": "https://github.com/bristol-su/frontend-toolkit#readme",
     "devDependencies": {},
     "dependencies": {
-        "@bristol-su/portal-ui-kit": "^0.0.1",
+        "@bristol-su/portal-ui-kit": "github:bristol-su/portal-ui-kit#develop",
         "axios": "^0.21.4",
         "js-cookie": "^3.0.1",
         "vue": "^2.6.12",
