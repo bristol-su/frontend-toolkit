@@ -34,8 +34,8 @@
         "url": "https://tobytwigger.myjetbrains.com"
     },
     "homepage": "https://github.com/bristol-su/frontend-toolkit#readme",
-    "devDependencies": {},
     "dependencies": {
+        "@bristol-su/control-js-api-client": "^1.1.2",
         "@bristol-su/portal-ui-kit": "github:bristol-su/portal-ui-kit#develop",
         "axios": "^0.21.4",
         "js-cookie": "^3.0.1",

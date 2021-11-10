@@ -29,6 +29,7 @@ export default {
         Vue.prototype.$store = store;
 
         Vue.use(UiKit, {
+            userSearcher: (search) => tools.control.user().getAllWhere({email: search}, 1, 10),
             errors: {
                 all: () => tools.validation.errors.all(),
                 has: (key) => tools.validation.errors.has(key),

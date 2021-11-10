@@ -6,6 +6,9 @@ import csrf from './csrf/index';
 import http from './http/client';
 import httpBasic from './http/basicClient';
 import generator from './formGenerator/index';
+import ControlClass from '@bristol-su/control-js-api-client';
+
+const control = new ControlClass(routes.basic.baseApiUrl() + '/control', httpBasic);
 
 export {
     csrf,
@@ -16,4 +19,5 @@ export {
     utils,
     validation,
     generator,
+    control
 }
