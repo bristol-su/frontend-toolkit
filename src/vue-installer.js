@@ -30,7 +30,7 @@ export default {
 
         Vue.use(UiKit, {
             userSearcher: (search) => new Promise((resolve, reject) => {
-                tools.control.user().getAllWhere({email: search}, 1, 10)
+                tools.control.client().user().getAllWhere({email: search}, 1, 10)
                   .then(response => resolve(response.data))
                   .catch(error => reject(error))
             }),
