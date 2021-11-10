@@ -6,7 +6,7 @@ import csrf from './csrf/index';
 import http from './http/client';
 import httpBasic from './http/basicClient';
 import generator from './formGenerator/index';
-import control from './control/client';
+import control from './control/index';
 
 export {
     csrf,
