@@ -29,9 +29,9 @@ export default {
         Vue.prototype.$store = store;
 
         Vue.use(UiKit, {
-            userSearcher: (search) => new Promise((resolve, reject) => {
-                tools.control.client.user.getAllWhere({email: search}, 1, 10)
-                  .then(response => resolve(response.data))
+            userSearcher: (search, page, perPage) => new Promise((resolve, reject) => {
+                tools.control.client.user.getAllWhere({email: search}, page, perPage)
+                  .then(response => resolve(response.data.data))
                   .catch(error => reject(error))
             }),
             errors: {
