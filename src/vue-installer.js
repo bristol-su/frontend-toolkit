@@ -34,6 +34,11 @@ export default {
                   .then(response => resolve(response.data.data))
                   .catch(error => reject(error))
             }),
+            logics: () => new Promise((resolve, reject) => {
+                tools.httpBasic.get(tools.routes.basic.baseApiUrl() + '/logic')
+                    .then(response => resolve(response.data))
+                    .catch(error => this.$notify.alert('There was a problem getting the logic: ' + error.message));
+            }),
             errors: {
                 all: () => tools.validation.errors.all(),
                 has: (key) => tools.validation.errors.has(key),
