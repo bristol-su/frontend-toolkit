@@ -27,7 +27,8 @@ export const actions = {
         context.commit('START_LOADING');
         tools.httpBasic.get(tools.routes.basic.baseApiUrl() + '/logic')
             .then(response => context.commit('SET_LOGICS', response.data))
-            .catch(error => this.$notify.alert('There was a problem getting the logic: ' + error.message));
+            .catch(error => this.$notify.alert('There was a problem getting the logic: ' + error.message))
+            .then(() => context.commit('STOP_LOADING'));
     }
 }
 
