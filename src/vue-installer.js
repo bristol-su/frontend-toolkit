@@ -3,6 +3,7 @@ import CsrfToken from './csrf/CsrfToken';
 import UiKit from '@bristol-su/portal-ui-kit';
 import Vuex from 'vuex'
 import * as loading from './store/modules/loading';
+import * as logics from './store/modules/logics';
 
 export default {
     install: function (Vue) {
@@ -10,7 +11,8 @@ export default {
 
         const store = new Vuex.Store({
             modules: {
-                loading: loading
+                loading: loading,
+                logics: logics
             }
         });
 
@@ -21,6 +23,7 @@ export default {
         Vue.prototype.$http = tools.http;
         Vue.prototype.$httpBasic = tools.httpBasic;
         Vue.prototype.$isLoading = (name) => Vue.prototype.$loading.isLoading(name);
+
         Vue.prototype.$loading = {
             isLoading: (name) => store.getters['loading/isLoading'](name),
             startLoading: (name) => store.commit('loading/START_LOADING', {name: name}),
@@ -34,11 +37,14 @@ export default {
                   .then(response => resolve(response.data.data))
                   .catch(error => reject(error))
             }),
-            logics: () => new Promise((resolve, reject) => {
-                tools.httpBasic.get(tools.routes.basic.baseApiUrl() + '/logic')
-                    .then(response => resolve(response.data))
-                    .catch(error => this.$notify.alert('There was a problem getting the logic: ' + error.message));
-            }),
+            loadLogics: () => {
+                if(!store.getters['logics/loaded']) {
+                    store.dispatch('logics/loadLogics');
+                }
+            },
+            logics: () => {
+                return store.getters['logics/logics']
+            },
             errors: {
                 all: () => tools.validation.errors.all(),
                 has: (key) => tools.validation.errors.has(key),
