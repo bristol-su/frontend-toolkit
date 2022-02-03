@@ -24,17 +24,22 @@ export const mutations = {
 
 export const actions = {
     loadLogics(context) {
-        context.commit('START_LOADING');
-        tools.httpBasic.get(tools.routes.basic.baseApiUrl() + '/logic')
-            .then(response => context.commit('SET_LOGICS', response.data))
-            .catch(error => this.$notify.alert('There was a problem getting the logic: ' + error.message))
-            .then(() => context.commit('STOP_LOADING'));
+        if(!context.getters.loaded && !context.getters.loading) {
+            context.commit('START_LOADING');
+            tools.httpBasic.get(tools.routes.basic.baseApiUrl() + '/logic')
+                .then(response => context.commit('SET_LOGICS', response.data))
+                .catch(error => this.$notify.alert('There was a problem getting the logic: ' + error.message))
+                .then(() => context.commit('STOP_LOADING'));
+        }
     }
 }
 
 export const getters = {
     loaded: (state) => {
-        return state.loading || state.loaded;
+        return state.loaded;
+    },
+    loading: (state) => {
+        return state.loading;
     },
     logics: (state) => {
         return state.logics;
