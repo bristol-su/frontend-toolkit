@@ -52,7 +52,7 @@ basicClient.interceptors.response.use(function (response) {
 basicClient.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
-    if(error.response.status === 422 && error.response.data.hasOwnProperty('errors')) {
+    if(error.response && error.response.status === 422 && error.response.data.hasOwnProperty('errors')) {
         ApiErrors.set(error.response.data.errors);
         Vue.prototype.$ui.eventBus.$emit('errors-updated');
     }
