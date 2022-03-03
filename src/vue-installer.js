@@ -6,7 +6,7 @@ import * as loading from './store/modules/loading';
 import * as logics from './store/modules/logics';
 
 export default {
-    install: function (Vue) {
+    install: function (Vue, options) {
         Vue.use(Vuex);
 
         const store = new Vuex.Store({
@@ -54,7 +54,8 @@ export default {
                 all: () => tools.validation.oldInput.all(),
                 has: (key) => tools.validation.oldInput.has(key),
                 get: (key) => tools.validation.oldInput.get(key),
-            }
+            },
+            tinyMceKey: options.tinyMceKey ?? ''
         })
     }
 }
